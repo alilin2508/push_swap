@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 12:26:35 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:08:21 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ char		**get_cmd(char **av, int i, int j, int j_cmd);
 int			ft_nb_cmd(char **av, int i, int j, int len);
 int			is_sorted(t_pile *pileA);
 void 		ft_sort_pile(t_pile *pileA);
+int 		find_max_id(t_pile *pile);
+int 		find_min_id(t_pile *pile);
 
 #endif

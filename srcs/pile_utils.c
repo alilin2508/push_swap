@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:15:22 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 12:25:19 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:21:25 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void 	ft_rr(t_pile *pile, int len, char *line, int flag)
 		}
 		ft_pile(pile, tmp[len - 1]);
 		if (line != NULL && flag == 0)
-			write(1, line, ft_strlen(line));
+			printf("%s\n", line);
 	}
 }
 
@@ -58,7 +58,7 @@ void 	ft_r(t_pile *pile, int len, char *line, int flag)
 			i--;
 		}
 		if (line != NULL && flag == 0)
-			write(1, line, ft_strlen(line));
+			printf("%s\n", line);
 	}
 }
 
@@ -73,7 +73,7 @@ void	ft_s(t_pile *pile, char *line, int flag)
 		ft_pile(pile, tmp[0]);
 		ft_pile(pile, tmp[1]);
 		if (line != NULL && flag == 0)
-			write(1, line, ft_strlen(line));
+			printf("%s\n", line);
 	}
 }
 
@@ -86,7 +86,7 @@ void 	ft_p(t_pile *pile, t_pile *depile, char *line, int flag)
 		tmp = ft_depile(depile);
 		ft_pile(pile, tmp);
 		if (flag == 0)
-			write(1, line, ft_strlen(line));
+			printf("%s\n", line);
 	}
 }
 
