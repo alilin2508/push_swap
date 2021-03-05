@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/04 15:40:32 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:19:20 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 # include <stdio.h>
 # include "../libft/includes/libft.h"
 
-typedef struct s_element
+typedef struct 				s_element
 {
-    int nb;
-    struct s_element *next;
-}							t_element;
+    int 							nb;
+    struct s_element 	*next;
+}											t_element;
 
-typedef struct s_pile
+typedef struct 				s_pile
 {
-    t_element *first;
-}							t_pile;
+    t_element 				*first;
+}											t_pile;
 
 t_pile	*init_pile();
 void 		ft_pile(t_pile *pile, int newnb);
@@ -45,5 +45,8 @@ void 		ft_exec2(char *line, t_pile *pileA, t_pile *pileB);
 void 		ft_exec(char *line, t_pile *pileA, t_pile *pileB);
 void 		ft_checkdigit(char **av, int i);
 void 		ft_checkerror(char **av);
+t_pile 	*init_arg(char **av);
+char		**get_cmd(char **av, int i, int j, int j_cmd);
+int			ft_nb_cmd(char **av, int i, int j, int len);
 
 #endif

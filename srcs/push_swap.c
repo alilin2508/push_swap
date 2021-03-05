@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/04 14:43:18 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 11:24:57 by alilin           ###   ########.fr       */
+/*   Created: 2021/03/05 09:57:22 by alilin            #+#    #+#             */
+/*   Updated: 2021/03/05 11:19:42 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pile.h"
 
-void 	ft_error()
+int		main(int ac, char **av)
 {
-	system("leaks push_swap");
-	write(2, "Error\n", 6);
-	exit (EXIT_FAILURE);
-}
+	t_pile	*pileA;
+	t_pile	*pileB;
 
-void 	ft_ko()
-{
-	printf("KO\n");
-	exit (EXIT_FAILURE);
-}
-
-void 	ft_ok()
-{
-	printf("OK\n");
-	exit (EXIT_SUCCESS);
+	if (ac <= 1)
+		return (-1);
+	pileA = init_arg(av);
+	pileB = init_pile();
+	printf("pileA\n");
+	disp_pile(pileA);
+	printf("pileB\n");
+	disp_pile(pileB);
+	return (0);
 }

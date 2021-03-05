@@ -6,13 +6,13 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:47:14 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/04 16:05:53 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 09:48:45 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long		ft_atoi(const char *str)
+long long		ft_atoi(const char *str)
 {
-	unsigned long long	result;
+	long long		result;
 	int					i;
 	int					value;
 

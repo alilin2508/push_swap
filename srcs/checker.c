@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/04 15:04:42 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:25:16 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void 	checker(t_pile *pileA, t_pile *pileB)
 	int 			tmp;
 	t_element *elem;
 
-	// printf("pileA\n");
-	// disp_pile(pileA);
-	// printf("pileB\n");
-	// disp_pile(pileB);
 	if (pile_len(pileB))
 		ft_ko();
 	else
@@ -56,19 +52,11 @@ int		main(int ac, char **av)
 {
 	t_pile	*pileA;
 	t_pile	*pileB;
-	int			i;
 
 	if (ac <= 1)
 		return (-1);
-	ft_checkerror(av);
-	pileA = init_pile();
+	pileA = init_arg(av);
 	pileB = init_pile();
-	i = ac - 1;
-	while (i > 0)
-	{
-		ft_pile(pileA, ft_atoi(av[i]));
-		i--;
-	}
 	loop_check(pileA, pileB);
 	return (0);
 }
