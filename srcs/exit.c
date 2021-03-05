@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:43:18 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 11:24:57 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:40:24 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void 	ft_error()
 {
-	system("leaks push_swap");
 	write(2, "Error\n", 6);
 	exit (EXIT_FAILURE);
 }

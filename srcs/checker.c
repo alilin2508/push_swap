@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 11:25:16 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/05 12:25:35 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void 	loop_check(t_pile *pileA, t_pile *pileB)
 	{
 		if (get_next_line(0, &line) == 0)
 			checker(pileA, pileB);
-		ft_exec(line, pileA, pileB);
+		ft_exec(line, pileA, pileB, 1);
 		free(line);
 		line = NULL;
 	}
