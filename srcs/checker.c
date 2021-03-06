@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 12:49:43 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/06 14:23:30 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,13 @@
 
 void 	checker(t_pile *pileA, t_pile *pileB)
 {
-	int 			tmp;
-	t_element *elem;
-
 	if (pile_len(pileB))
 		ft_ko();
 	else
 	{
-		elem = pileA->first;
-		while (elem->next != NULL)
-		{
-			tmp = elem->nb;
-			elem = elem->next;
-			if (tmp > elem->nb)
-				ft_ko();
-		}
+		disp_pile(pileA);
+		if(is_sorted(pileA))
+			ft_ko();
 		ft_ok();
 	}
 }

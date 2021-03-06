@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:57:22 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 11:53:01 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/06 14:13:58 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,32 @@ void 	quick_sort(t_pile *pileA)
 	}
 }
 
+void 	place_in_pile(t_pile *pile, int len)
+{
+	int 					index;
+
+	if (len < 2)
+		return;
+	index = find_min_id(pile);
+	exec_ra_rra(pile, len, index);
+}
+
 void 	global_sort(t_pile *pileA)
 {
 	t_pile				*pileB;
-	int						movA;
 
 	pileB = init_pile();
-	// while (pile_len(pileA) != 0)
-	// {
-		movA = best_move_a(pileA, pile_len(pileA));
-		printf("%d\n", movA);
-	// }
+	while (pile_len(pileA) != 0)
+ 	{
+		best_move_a(pileA, pile_len(pileA));
+		place_in_pile(pileB, pile_len(pileB));
+		ft_exec("pb", pileA, pileB, 0);
+	}
+	while (pile_len(pileB) != 0)
+ 	{
+		exec_ra_rra(pileB, pile_len(pileB), find_max_id(pileB));
+		ft_exec("pa", pileA, pileB, 0);
+	}
 }
 
 void 	ft_sort_pile(t_pile *pileA)
@@ -57,7 +72,7 @@ void 	ft_sort_pile(t_pile *pileA)
 		return;
 	if (len <= 3)
 		quick_sort(pileA);
-	else if (len <= 100)
+	else
 		global_sort(pileA);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 11:59:43 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/06 14:03:36 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int 		find_min_id(t_pile *pile);
 void 		exec_ra_rra(t_pile *pile, int len, int index);
 int			idx_from_startA(int	*tab, int len, int min, int max, int flag, int *index);
 int			idx_from_endA(int	*tab, int len, int min, int max, int flag, int index);
-int 		best_move_a(t_pile *pileA, int len);
+void 		best_move_a(t_pile *pileA, int len);
 
 #endif
