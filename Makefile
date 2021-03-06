@@ -23,6 +23,7 @@ PS_SRC = 	push_swap.c \
 					checkerror.c \
 					arg.c \
 					swap_utils.c \
+					best_moveA.c \
 
 CK_OBJ		= $(addprefix $(CK_OBJDIR)/,$(CK_SRC:.c=.o))
 PS_OBJ		= $(addprefix $(PS_OBJDIR)/,$(PS_SRC:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:52:28 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 13:19:19 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/06 11:59:36 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,27 @@ int 	find_min_id(t_pile *pile)
 		}
 	}
 	return (index);
+}
+
+void 	exec_ra_rra(t_pile *pile, int len, int index)
+{
+	int 	i;
+
+	i = 0;
+	if (index >= len / 2)
+	{
+		while (i < len - index)
+		{
+			ft_exec("rra", pile, NULL, 0);
+			i++;
+		}
+	}
+	else
+	{
+		while (i < index)
+		{
+			ft_exec("ra", pile, NULL, 0);
+			i++;
+		}
+	}
 }
