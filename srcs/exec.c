@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:28 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 14:03:29 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/08 12:34:41 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void 	ft_exec2(char *line, t_pile *pileA, t_pile *pileB, int flag)
 	else if (!ft_strcmp(line, "rr"))
 	{
 		ft_r(pileA, pile_len(pileA), line, flag);
-		ft_r(pileB, pile_len(pileB), NULL, flag);
+		ft_r(pileB, pile_len(pileB), NULL, 1);
 	}
 	else if (!ft_strcmp(line, "rra"))
 		ft_rr(pileA, pile_len(pileA), line, flag);
@@ -30,7 +30,7 @@ void 	ft_exec2(char *line, t_pile *pileA, t_pile *pileB, int flag)
 	else if (!ft_strcmp(line, "rrr"))
 	{
 		ft_rr(pileA, pile_len(pileA), line, flag);
-		ft_rr(pileB, pile_len(pileB), NULL, flag);
+		ft_rr(pileB, pile_len(pileB), NULL, 1);
 	}
 	else
 	{
@@ -49,7 +49,7 @@ void	ft_exec(char *line, t_pile *pileA, t_pile *pileB, int flag)
 	else if (!ft_strcmp(line, "ss"))
 	{
 		ft_s(pileA, line, flag);
-		ft_s(pileB, NULL, flag);
+		ft_s(pileB, NULL, 1);
 	}
 	else if (!ft_strcmp(line, "pa"))
 		ft_p(pileA, pileB, line, flag);

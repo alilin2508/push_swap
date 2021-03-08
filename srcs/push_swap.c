@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:57:22 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 14:13:58 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:52:34 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,34 @@ void 	quick_sort(t_pile *pileA)
 	}
 }
 
-void 	place_in_pile(t_pile *pile, int len)
+void 	place_in_pileB(t_pile *pile, int len, int nb)
 {
 	int 					index;
 
 	if (len < 2)
 		return;
-	index = find_min_id(pile);
-	exec_ra_rra(pile, len, index);
+	index = find_min_nb_id(pile, nb);
+	if (index != -1)
+		exec_rb_rrb(pile, len, index);
+	else
+		exec_rb_rrb(pile, len, find_max_id(pile));
 }
 
 void 	global_sort(t_pile *pileA)
 {
 	t_pile				*pileB;
+	int 					nb;
 
 	pileB = init_pile();
 	while (pile_len(pileA) != 0)
  	{
-		best_move_a(pileA, pile_len(pileA));
-		place_in_pile(pileB, pile_len(pileB));
+		nb = best_move_a(pileA, pile_len(pileA));
+		place_in_pileB(pileB, pile_len(pileB), nb);
 		ft_exec("pb", pileA, pileB, 0);
 	}
+	exec_rb_rrb(pileB, pile_len(pileB), find_max_id(pileB));
 	while (pile_len(pileB) != 0)
- 	{
-		exec_ra_rra(pileB, pile_len(pileB), find_max_id(pileB));
 		ft_exec("pa", pileA, pileB, 0);
-	}
 }
 
 void 	ft_sort_pile(t_pile *pileA)

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 11:50:47 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 14:03:53 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/08 11:33:40 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		idx_from_endA(int	*tab, int len, int min, int max, int flag, int index)
 	return (index);
 }
 
-void 		best_move_a(t_pile *pileA, int len)
+int 		best_move_a(t_pile *pileA, int len)
 {
 	int 					tab[len + 1];
 	t_element 		*elem;
@@ -119,4 +119,6 @@ void 		best_move_a(t_pile *pileA, int len)
 	flag = idx_from_startA(tab, len, find_min_id(pileA), find_max_id(pileA), 5, &index);
 	index = idx_from_endA(tab, len, find_min_id(pileA), find_max_id(pileA), flag, index);
 	exec_ra_rra(pileA, len, index);
+	elem = pileA->first;
+	return (elem->nb);
 }
