@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/08 13:47:37 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:58:50 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,19 @@ int 		find_max_id(t_pile *pile);
 int 		find_min_id(t_pile *pile);
 void 		exec_ra_rra(t_pile *pile, int len, int index);
 void 		exec_rb_rrb(t_pile *pile, int len, int index);
-int			idx_from_startA(int	*tab, int len, int min, int max, int flag, int *index);
-int			idx_from_endA(int	*tab, int len, int min, int max, int flag, int index);
-int 		best_move_a(t_pile *pileA, int len);
+int			calc_move_a(t_pile *pileA, t_pile *pileB, int *tab, int i);
+int 		calc_ra_rra(int len, int i);
+int 		calc_place_in_pileB(t_pile *pile, int len, int nb);
+int 		best_move_a(t_pile *pileA, t_pile *pileB, int lenA);
+int 		calc_place_in_pileA(t_pile *pile, int len, int nb);
+int 		calc_rb_rrb(int len, int i);
+int			calc_move_b(t_pile *pileA, t_pile *pileB, int *tab, int i);
+int 		best_move_b(t_pile *pileA, t_pile *pileB, int lenB);
 int 		find_min_nb_id(t_pile *pile, int nb);
+int 		find_max_nb_id(t_pile *pile, int nb);
+int 		find_max_nb(t_pile *pile);
 int 		find_min_nb(t_pile *pile);
 void 		place_in_pileB(t_pile *pile, int len, int nb);
-
+void 		place_in_pileA(t_pile *pile, int len, int nb);
+void		insert_leftover_to_b(t_pile *pileA, t_pile *pileB);
 #endif
