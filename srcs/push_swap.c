@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:57:22 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/08 15:36:53 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:37:33 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,56 @@ void 	quick_sort(t_pile *pileA)
 	}
 }
 
-void 	place_in_pileB(t_pile *pile, int len, int nb)
+int 	place_in_pileB(t_pile *pileB, t_pile *pileA, int len, int indexA)
 {
 	int 					index;
+	int						i;
+	int						nb;
+	t_element 		*elem;
 
 	if (len < 2)
-		return;
-	index = find_min_nb_id(pile, nb);
+		return (0);
+	i = 0;
+	elem = pileA->first;
+	while (i <= indexA)
+	{
+		nb = elem->nb;
+		elem = elem->next;
+		i++;
+	}
+	index = find_min_nb_id(pileB, nb);
+	if (index == len - 1 && pileB->first->nb == find_max_nb_id(pileB, nb))
+		return (0);
 	if (index != -1)
-		exec_rb_rrb(pile, len, index);
+		return(index);
 	else
-		exec_rb_rrb(pile, len, find_max_id(pile));
+		return(find_max_id(pileB));
 }
 
-void 	place_in_pileA(t_pile *pile, int len, int nb)
+int 	place_in_pileA(t_pile *pileA, t_pile *pileB, int len, int indexB)
 {
 	int 					index;
+	int						i;
+	int						nb;
+	t_element 		*elem;
 
 	if (len < 2)
-		return;
-	index = find_max_nb_id(pile, nb);
+		return (0);
+	i = 0;
+	elem = pileB->first;
+	while (i <= indexB)
+	{
+		nb = elem->nb;
+		elem = elem->next;
+		i++;
+	}
+	index = find_max_nb_id(pileA, nb);
+	if (index == len - 1 && pileA->first->nb == find_min_nb_id(pileA, nb))
+		return (0);
 	if (index != -1)
-		exec_ra_rra(pile, len, index);
+		return (index);
 	else
-		exec_ra_rra(pile, len, find_min_id(pile));
+		return(find_min_id(pileA));
 }
 
 void	insert_leftover_to_b(t_pile *pileA, t_pile *pileB)
@@ -81,8 +107,8 @@ void	insert_leftover_to_b(t_pile *pileA, t_pile *pileB)
 void 	global_sort(t_pile *pileA)
 {
 	t_pile				*pileB;
-	int 					mv;
 	int 					optimizer;
+	int 					mv;
 
 	pileB = init_pile();
 	if (pile_len(pileA) > 200)
@@ -90,10 +116,9 @@ void 	global_sort(t_pile *pileA)
 	else
 		optimizer = 2;
 	while (pile_len(pileA) > optimizer)
- 	{
+	{
 		mv = best_move_a(pileA, pileB, pile_len(pileA));
-		exec_ra_rra(pileA, pile_len(pileA), mv);
-		place_in_pileB(pileB, pile_len(pileB), pileA->first->nb);
+		exec_r_rr(pileA, pileB, mv, place_in_pileB(pileB, pileA, pile_len(pileB), mv));
 		ft_exec("pb", pileA, pileB, 0);
 	}
 	if (optimizer == 50)
@@ -101,11 +126,11 @@ void 	global_sort(t_pile *pileA)
 	while (pile_len(pileB) != 0)
 	{
 		mv = best_move_b(pileA, pileB, pile_len(pileB));
-		exec_rb_rrb(pileB, pile_len(pileB), mv);
-		place_in_pileA(pileA, pile_len(pileA), pileB->first->nb);
+		exec_r_rr(pileA, pileB, place_in_pileA(pileA, pileB, pile_len(pileA), mv), mv);
 		ft_exec("pa", pileA, pileB, 0);
 	}
-	exec_ra_rra(pileA, pile_len(pileA), find_min_id(pileA));
+	ft_free(pileB);
+	exec_ra_rra(pileA, pile_len(pileA), find_min_id(pileA), 0);
 }
 
 void 	ft_sort_pile(t_pile *pileA)
@@ -129,5 +154,6 @@ int		main(int ac, char **av)
 		return (-1);
 	pileA = init_arg(av);
 	ft_sort_pile(pileA);
+	ft_free(pileA);
 	return (0);
 }

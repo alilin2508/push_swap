@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:52:28 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/08 15:14:32 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:03:39 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,12 +146,49 @@ int 	find_max_nb_id(t_pile *pile, int nb)
 	return (index);
 }
 
-void 	exec_ra_rra(t_pile *pile, int len, int index)
+void 	exec_r_rr(t_pile *pileA, t_pile *pileB, int indexA, int indexB)
 {
 	int 	i;
+	int 	j;
+	int 	lenA;
+	int 	lenB;
 
+	lenA = pile_len(pileA);
+	lenB = pile_len(pileB);
 	i = 0;
-	if (index >= len / 2)
+	j = 0;
+	if (indexA > lenA / 2 && indexB > lenB / 2)
+	{
+		while (i < lenA - indexA && j < lenB - indexB)
+		{
+			ft_exec("rrr", pileA, pileB, 0);
+			i++;
+			j++;
+		}
+		exec_ra_rra(pileA, lenA, indexA, i);
+		exec_rb_rrb(pileB, lenB, indexB, j);
+	}
+	else if (indexA <= lenA / 2 && indexB <= lenB / 2)
+	{
+		while (i < indexA && j < indexB)
+		{
+			ft_exec("rr", pileA, pileB, 0);
+			i++;
+			j++;
+		}
+		exec_ra_rra(pileA, lenA, indexA, i);
+		exec_rb_rrb(pileB, lenB, indexB, j);
+	}
+	else
+	{
+		exec_ra_rra(pileA, lenA, indexA, 0);
+		exec_rb_rrb(pileB, lenB, indexB, 0);
+	}
+}
+
+void 	exec_ra_rra(t_pile *pile, int len, int index, int i)
+{
+	if (index > len / 2)
 	{
 		while (i < len - index)
 		{
@@ -169,12 +206,9 @@ void 	exec_ra_rra(t_pile *pile, int len, int index)
 	}
 }
 
-void 	exec_rb_rrb(t_pile *pile, int len, int index)
+void 	exec_rb_rrb(t_pile *pile, int len, int index, int i)
 {
-	int 	i;
-
-	i = 0;
-	if (index >= len / 2)
+	if (index > len / 2)
 	{
 		while (i < len - index)
 		{

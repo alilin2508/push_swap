@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/08 13:52:22 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:15:47 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void 	checker(t_pile *pileA, t_pile *pileB)
 {
 	if (pile_len(pileB))
-		ft_ko();
+		ft_ko(pileA, pileB);
 	else
 	{
 		if(is_sorted(pileA))
-			ft_ko();
-		ft_ok();
+			ft_ko(pileA, pileB);
+		ft_ok(pileA, pileB);
 	}
 }
 

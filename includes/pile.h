@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/08 14:58:50 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:16:28 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void 		ft_p(t_pile *pile, t_pile *depile, char *line, int flag);
 void		ft_s(t_pile *pile, char *line, int flag);
 void 		ft_r(t_pile *pile, int len, char *line, int flag);
 void 		ft_rr(t_pile *pile, int len, char *line, int flag);
-void 		ft_error();
-void 		ft_ko();
-void 		ft_ok();
+void 		ft_error(t_pile *pileA, t_pile *pileB);
+void 		ft_ko(t_pile *pileA, t_pile *pileB);
+void 		ft_ok(t_pile *pileA, t_pile *pileB);
 void 		ft_exec2(char *line, t_pile *pileA, t_pile *pileB, int flag);
 void 		ft_exec(char *line, t_pile *pileA, t_pile *pileB, int flag);
 void 		ft_checkdigit(char **av, int i);
@@ -52,8 +52,9 @@ int			is_sorted(t_pile *pileA);
 void 		ft_sort_pile(t_pile *pileA);
 int 		find_max_id(t_pile *pile);
 int 		find_min_id(t_pile *pile);
-void 		exec_ra_rra(t_pile *pile, int len, int index);
-void 		exec_rb_rrb(t_pile *pile, int len, int index);
+void 		exec_r_rr(t_pile *pileA, t_pile *pileB, int indexA, int indexB);
+void 		exec_ra_rra(t_pile *pile, int len, int index, int i);
+void 		exec_rb_rrb(t_pile *pile, int len, int index, int i);
 int			calc_move_a(t_pile *pileA, t_pile *pileB, int *tab, int i);
 int 		calc_ra_rra(int len, int i);
 int 		calc_place_in_pileB(t_pile *pile, int len, int nb);
@@ -66,7 +67,9 @@ int 		find_min_nb_id(t_pile *pile, int nb);
 int 		find_max_nb_id(t_pile *pile, int nb);
 int 		find_max_nb(t_pile *pile);
 int 		find_min_nb(t_pile *pile);
-void 		place_in_pileB(t_pile *pile, int len, int nb);
-void 		place_in_pileA(t_pile *pile, int len, int nb);
+int 		place_in_pileB(t_pile *pileB, t_pile *pileA, int len, int indexA);
+int 		place_in_pileA(t_pile *pileA, t_pile *pileB, int len, int indexB);
 void		insert_leftover_to_b(t_pile *pileA, t_pile *pileB);
+void 		ft_free(t_pile *pile);
+
 #endif
