@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 13:09:42 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 16:46:26 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	loop_check(t_pile *pile_a, t_pile *pile_b)
 	{
 		if (get_next_line(0, &line) == 0)
 			checker(pile_a, pile_b);
+		//printf("%s\n", line);
 		ft_exec(line, pile_a, pile_b, 1);
 		free(line);
 		line = NULL;

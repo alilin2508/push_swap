@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:44:05 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 12:46:41 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 16:56:48 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 int		get_next_line(int fd, char **line);
 char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
+char	*ft_strcpy(char *dest, char *src);
 
 #endif
