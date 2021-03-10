@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:58:56 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 16:56:05 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:09:26 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,70 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-static size_t	ft_bufflen(const char *s)
+int		ft_return(char **str, char **line)
 {
-	int i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
-	while (s[i] != '\0' && s[i] != '\n')
+	while ((*str)[i] != '\n' && (*str)[i] != '\0')
 		i++;
-	return (i);
+	*line = ft_substr(*str, 0, i);
+	if ((*str)[i] == '\n')
+		tmp = ft_strdup(&(*str)[i + 1]);
+	else
+		tmp = NULL;
+	free(*str);
+	*str = tmp;
+	if (!*str)
+		return (0);
+	return (1);
 }
 
-char			*ft_alloc(size_t size)
+char	*ft_read(int fd, char *buff, char *str)
 {
-	char	*s;
-	char	*ptr;
+	char	*tmp;
+	int		res;
 
-	s = (char *)malloc(sizeof(char) * (size + 1));
-	if (s == NULL)
-		return (NULL);
-	size = size + 1;
-	ptr = s;
-	while (size-- > 0)
-		*ptr++ = '\0';
-	return (s);
-}
-
-static char		*ft_save(char *lines, size_t *a)
-{
-	if (ft_strchr(lines, '\n'))
+	while ((res = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		ft_strcpy(lines, ft_strchr(lines, '\n') + 1);
-		return (lines);
+		buff[res] = '\0';
+		if (!str || !*str)
+		{
+			tmp = ft_strdup(buff);
+			free(str);
+			str = tmp;
+		}
+		else
+		{
+			tmp = ft_strjoin(str, buff);
+			free(str);
+			str = tmp;
+		}
+		if (ft_strchr(str, '\n'))
+			break ;
 	}
-	if (ft_bufflen(lines) > 0)
-	{
-		ft_strcpy(lines, ft_strchr(lines, '\0'));
-		*a = 0;
-		return (lines);
-	}
-	return (NULL);
+	return (str);
 }
 
-int				get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	static char		buf[BUFFER_SIZE + 1];
-	char			*line_tmp;
-	static char		*lines = NULL;
-	int				end_buff;
-	size_t			a;
+	static char		*str;
+	char			*buff;
 
-	a = 1;
-	if (fd < 0 || BUFFER_SIZE < 1 || line == NULL || read(fd, buf, 0) < 0)
+	if (!(buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
-	if (lines == NULL && (lines = ft_alloc(0)) == NULL)
-		return (-1);
-	while (ft_strchr(lines, '\n') == NULL
-		&& (end_buff = read(fd, buf, BUFFER_SIZE)) > 0)
+	if (fd < 0 || !line || read(fd, buff, 0) < 0 || BUFFER_SIZE < 1)
 	{
-		buf[end_buff] = '\0';
-		line_tmp = lines;
-		lines = ft_strjoin(line_tmp, buf);
-		free(line_tmp);
+		free(buff);
+		return (-1);
 	}
-	*line = ft_substr(lines, 0, ft_bufflen(lines));
-	if ((ft_save(lines, &a) != NULL) && a == 1)
-		return (1);
-	free(lines);
-	lines = NULL;
-	return (0);
+	str = ft_read(fd, buff, str);
+	free(buff);
+	if (!str)
+	{
+		*line = ft_strdup("");
+		return (0);
+	}
+	return (ft_return(&str, line));
 }
