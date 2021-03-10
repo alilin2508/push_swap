@@ -6,73 +6,75 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:10 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/06 14:03:43 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 14:02:39 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pile.h"
 
-t_pile	*init_pile()
+t_pile	*init_pile(void)
 {
-	t_pile *pile;
+	t_pile		*pile;
 
-	pile = malloc(sizeof(*pile));
+	if (!(pile = malloc(sizeof(*pile))))
+		ft_malloc_error();
 	if (pile == NULL)
 		return (NULL);
 	pile->first = NULL;
 	return (pile);
 }
 
-void 		ft_pile(t_pile *pile, int newnb)
+void	ft_pile(t_pile *pile, int newnb)
 {
-	t_element *new;
+	t_element	*new;
 
-	new = malloc(sizeof(*new));
+	if (!(new = malloc(sizeof(*new))))
+		ft_malloc_error();
 	if (pile == NULL || new == NULL)
-		return;
+		return ;
 	new->nb = newnb;
 	new->next = pile->first;
 	pile->first = new;
-	return;
+	return ;
 }
 
-int 		ft_depile(t_pile *pile)
+int		ft_depile(t_pile *pile)
 {
-	int 			nbDepile;
-	t_element	*elemDepile;
+	int			nb_depile;
+	t_element	*elem_depile;
 
-	nbDepile = 0;
-	elemDepile = pile->first;
+	nb_depile = 0;
+	elem_depile = pile->first;
 	if (pile == NULL)
 		return (-1);
 	if (pile->first != NULL)
 	{
-		nbDepile = elemDepile->nb;
-		pile->first = elemDepile->next;
-		free(elemDepile);
+		nb_depile = elem_depile->nb;
+		pile->first = elem_depile->next;
+		free(elem_depile);
 	}
-	return nbDepile;
+	return (nb_depile);
 }
 
-void 		disp_pile(t_pile *pile)
+void	disp_pile(t_pile *pile)
 {
-	t_element *elem;
+	t_element	*elem;
 
 	if (pile == NULL)
-		return;
+		return ;
 	elem = pile->first;
 	while (elem != NULL)
 	{
 		printf("%d\n", elem->nb);
 		elem = elem->next;
 	}
-	return;
+	return ;
 }
 
-int 		pile_len(t_pile *pile)
+int		pile_len(t_pile *pile)
 {
-	t_element *elem;
-	int				i;
+	t_element	*elem;
+	int			i;
 
 	if (pile == NULL)
 		return (0);

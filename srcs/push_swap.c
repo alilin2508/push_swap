@@ -6,154 +6,84 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 09:57:22 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/09 14:37:33 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 13:52:24 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pile.h"
 
-void 	quick_sort(t_pile *pileA)
+void	quick_sort(t_pile *pile_a)
 {
 	register int	max_id;
 
-	if (pile_len(pileA) == 1)
-		return;
-	if (pile_len(pileA) == 2)
+	if (pile_len(pile_a) == 1)
+		return ;
+	if (pile_len(pile_a) == 2)
 	{
-		if(pileA->first->nb > pileA->first->next->nb)
-			ft_exec("sa", pileA, NULL, 0);
+		if (pile_a->first->nb > pile_a->first->next->nb)
+			ft_exec("sa", pile_a, NULL, 0);
 	}
 	else
 	{
-		max_id = find_max_id(pileA);
+		max_id = find_max_id(pile_a);
 		if (max_id == 0)
-			ft_exec("ra", pileA, NULL, 0);
+			ft_exec("ra", pile_a, NULL, 0);
 		else if (max_id == 1)
-			ft_exec("rra", pileA, NULL, 0);
-		if (pileA->first->nb > pileA->first->next->nb)
-			ft_exec("sa", pileA, NULL, 0);
+			ft_exec("rra", pile_a, NULL, 0);
+		if (pile_a->first->nb > pile_a->first->next->nb)
+			ft_exec("sa", pile_a, NULL, 0);
 	}
 }
 
-int 	place_in_pileB(t_pile *pileB, t_pile *pileA, int len, int indexA)
+void	global_sort(t_pile *pile_a)
 {
-	int 					index;
-	int						i;
-	int						nb;
-	t_element 		*elem;
+	t_pile			*pile_b;
+	int				optimizer;
+	int				mv;
 
-	if (len < 2)
-		return (0);
-	i = 0;
-	elem = pileA->first;
-	while (i <= indexA)
+	pile_b = init_pile();
+	optimizer = (pile_len(pile_a) > 200) ? 50 : 2;
+	while (pile_len(pile_a) > optimizer)
 	{
-		nb = elem->nb;
-		elem = elem->next;
-		i++;
-	}
-	index = find_min_nb_id(pileB, nb);
-	if (index == len - 1 && pileB->first->nb == find_max_nb_id(pileB, nb))
-		return (0);
-	if (index != -1)
-		return(index);
-	else
-		return(find_max_id(pileB));
-}
-
-int 	place_in_pileA(t_pile *pileA, t_pile *pileB, int len, int indexB)
-{
-	int 					index;
-	int						i;
-	int						nb;
-	t_element 		*elem;
-
-	if (len < 2)
-		return (0);
-	i = 0;
-	elem = pileB->first;
-	while (i <= indexB)
-	{
-		nb = elem->nb;
-		elem = elem->next;
-		i++;
-	}
-	index = find_max_nb_id(pileA, nb);
-	if (index == len - 1 && pileA->first->nb == find_min_nb_id(pileA, nb))
-		return (0);
-	if (index != -1)
-		return (index);
-	else
-		return(find_min_id(pileA));
-}
-
-void	insert_leftover_to_b(t_pile *pileA, t_pile *pileB)
-{
-	int				index;
-
-	index = 0;
-	while (pile_len(pileA) > 2)
-	{
-		index = find_min_id(pileA);
-		if (index == 0)
-			ft_exec("pb", pileA, pileB, 0);
-		else if (index <= pile_len(pileA) / 2)
-			ft_exec("ra", pileA, pileB, 0);
-		else if (index > pile_len(pileA) / 2)
-			ft_exec("rra", pileA, pileB, 0);
-	}
-}
-
-void 	global_sort(t_pile *pileA)
-{
-	t_pile				*pileB;
-	int 					optimizer;
-	int 					mv;
-
-	pileB = init_pile();
-	if (pile_len(pileA) > 200)
-		optimizer = 50;
-	else
-		optimizer = 2;
-	while (pile_len(pileA) > optimizer)
-	{
-		mv = best_move_a(pileA, pileB, pile_len(pileA));
-		exec_r_rr(pileA, pileB, mv, place_in_pileB(pileB, pileA, pile_len(pileB), mv));
-		ft_exec("pb", pileA, pileB, 0);
+		mv = best_move_a(pile_a, pile_b, pile_len(pile_a));
+		exec_r_rr(pile_a, pile_b, mv, place_in_pile_b(pile_b, pile_a, \
+					pile_len(pile_b), mv));
+		ft_exec("pb", pile_a, pile_b, 0);
 	}
 	if (optimizer == 50)
-		insert_leftover_to_b(pileA, pileB);
-	while (pile_len(pileB) != 0)
+		insert_leftover_to_b(pile_a, pile_b);
+	while (pile_len(pile_b) != 0)
 	{
-		mv = best_move_b(pileA, pileB, pile_len(pileB));
-		exec_r_rr(pileA, pileB, place_in_pileA(pileA, pileB, pile_len(pileA), mv), mv);
-		ft_exec("pa", pileA, pileB, 0);
+		mv = best_move_b(pile_a, pile_b, pile_len(pile_b));
+		exec_r_rr(pile_a, pile_b, place_in_pile_a(pile_a, pile_b, \
+					pile_len(pile_a), mv), mv);
+		ft_exec("pa", pile_a, pile_b, 0);
 	}
-	ft_free(pileB);
-	exec_ra_rra(pileA, pile_len(pileA), find_min_id(pileA), 0);
+	ft_free(pile_b);
+	exec_ra_rra(pile_a, pile_len(pile_a), find_min_id(pile_a), 0);
 }
 
-void 	ft_sort_pile(t_pile *pileA)
+void	ft_sort_pile(t_pile *pile_a)
 {
-	int						len;
+	int				len;
 
-	len = pile_len(pileA);
-	if (is_sorted(pileA) == 0)
-		return;
+	len = pile_len(pile_a);
+	if (is_sorted(pile_a) == 0)
+		return ;
 	if (len <= 3)
-		quick_sort(pileA);
+		quick_sort(pile_a);
 	else
-		global_sort(pileA);
+		global_sort(pile_a);
 }
 
 int		main(int ac, char **av)
 {
-	t_pile				*pileA;
+	t_pile			*pile_a;
 
 	if (ac <= 1)
 		return (-1);
-	pileA = init_arg(av);
-	ft_sort_pile(pileA);
-	ft_free(pileA);
+	pile_a = init_arg(av);
+	ft_sort_pile(pile_a);
+	ft_free(pile_a);
 	return (0);
 }

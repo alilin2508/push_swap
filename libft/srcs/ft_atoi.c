@@ -6,15 +6,15 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:47:14 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/05 09:48:45 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:47:56 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 long long		ft_atoi(const char *str)
 {
 	long long		result;
-	int					i;
-	int					value;
+	int				i;
+	int				value;
 
 	i = 0;
 	while ((str[i] > 8 && 14 > str[i]) || str[i] == 32)

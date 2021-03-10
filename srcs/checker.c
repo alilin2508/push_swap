@@ -6,34 +6,34 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:04 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/09 14:15:47 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 13:09:42 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pile.h"
 
-void 	checker(t_pile *pileA, t_pile *pileB)
+void	checker(t_pile *pile_a, t_pile *pile_b)
 {
-	if (pile_len(pileB))
-		ft_ko(pileA, pileB);
+	if (pile_len(pile_b))
+		ft_ko(pile_a, pile_b);
 	else
 	{
-		if(is_sorted(pileA))
-			ft_ko(pileA, pileB);
-		ft_ok(pileA, pileB);
+		if (is_sorted(pile_a))
+			ft_ko(pile_a, pile_b);
+		ft_ok(pile_a, pile_b);
 	}
 }
 
-void 	loop_check(t_pile *pileA, t_pile *pileB)
+void	loop_check(t_pile *pile_a, t_pile *pile_b)
 {
-	char		*line;
+	char	*line;
 
 	line = NULL;
 	while (42)
 	{
 		if (get_next_line(0, &line) == 0)
-			checker(pileA, pileB);
-		ft_exec(line, pileA, pileB, 1);
+			checker(pile_a, pile_b);
+		ft_exec(line, pile_a, pile_b, 1);
 		free(line);
 		line = NULL;
 	}
@@ -41,13 +41,13 @@ void 	loop_check(t_pile *pileA, t_pile *pileB)
 
 int		main(int ac, char **av)
 {
-	t_pile	*pileA;
-	t_pile	*pileB;
+	t_pile	*pile_a;
+	t_pile	*pile_b;
 
 	if (ac <= 1)
 		return (-1);
-	pileA = init_arg(av);
-	pileB = init_pile();
-	loop_check(pileA, pileB);
+	pile_a = init_arg(av);
+	pile_b = init_pile();
+	loop_check(pile_a, pile_b);
 	return (0);
 }

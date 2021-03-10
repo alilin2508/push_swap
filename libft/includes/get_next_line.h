@@ -6,14 +6,14 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:44:05 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/04 15:44:24 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:46:41 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFFER_SIZE 100
-
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# define BUFFER_SIZE 100
 
 # include <unistd.h>
 # include <stddef.h>

@@ -6,75 +6,58 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 11:50:47 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/09 14:37:29 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/10 13:33:33 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pile.h"
 
-int 	calc_place_in_pileB(t_pile *pile, int len, int nb)
+int		calc_place_in_pile_b(t_pile *pile, int len, int nb)
 {
-	int 					index;
+	int		index;
 
 	if (len < 2)
 		return (0);
 	index = find_min_nb_id(pile, nb);
-	if (index == len - 1 && pile->first->nb == find_max_nb_id(pile, nb))
-		return (0);
 	if (index != -1)
-	{
-		if (index > len / 2)
-			return (len - index);
 		return (index);
-	}
 	else
-	{
-		if (find_max_id(pile) > len / 2)
-			return (len - find_max_id(pile));
 		return (find_max_id(pile));
-	}
 }
 
-int 	calc_ra_rra(int len, int i)
+int		calc_ra_rra(int len, int i)
 {
 	if (i > len / 2)
 		return (len - i);
 	return (i);
 }
 
-int			calc_move_a(t_pile *pileA, t_pile *pileB, int *tab, int i)
+int		calc_move_a(t_pile *pile_a, t_pile *pile_b, int *tab, int i)
 {
-	int						moves;
+	int		moves;
+	int		index_b;
 
-	moves = calc_ra_rra(pile_len(pileA), i) + calc_place_in_pileB(pileB, pile_len(pileB), tab[i]) + 1;
+	index_b = calc_place_in_pile_b(pile_b, pile_len(pile_b), tab[i]);
+	moves = calc_r_rr(pile_len(pile_a), i, index_b, pile_len(pile_b)) + 1;
 	return (moves);
 }
 
-int 		best_move_a(t_pile *pileA, t_pile *pileB, int lenA)
+int		best_move_a(t_pile *pile_a, t_pile *pile_b, int len_a)
 {
-	int 					tab[lenA + 1];
-	t_element 		*elem;
-	int 					index;
-	int						i;
-	int 					nb_move;
+	int		tab[len_a + 1];
+	int		index;
+	int		i;
+	int		nb_move;
 
-
-	i = 0;
-	elem = pileA->first;
-	while (i < pile_len(pileA))
-	{
-		tab[i] = elem->nb;
-		elem = elem->next;
-		i++;
-	}
-	nb_move = calc_move_a(pileA, pileB, tab, 0);
+	fill_tab(tab, pile_a, pile_len(pile_a));
+	nb_move = calc_move_a(pile_a, pile_b, tab, 0);
 	i = 1;
 	index = 0;
-	while (i < pile_len(pileA))
+	while (i < pile_len(pile_a))
 	{
-		if (calc_move_a(pileA, pileB, tab, i) < nb_move)
+		if (calc_move_a(pile_a, pile_b, tab, i) < nb_move)
 		{
-			nb_move = calc_move_a(pileA, pileB, tab, i);
+			nb_move = calc_move_a(pile_a, pile_b, tab, i);
 			index = i;
 		}
 		i++;
