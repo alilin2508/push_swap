@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:43:18 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 13:58:25 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/11 10:17:18 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,21 @@ void	ft_error(char **arg, t_pile *pile_a, t_pile *pile_b)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_ko(t_pile *pile_a, t_pile *pile_b)
+void	ft_ko(t_pile *pile_a, t_pile *pile_b, char *line)
 {
 	printf("KO\n");
 	ft_free(pile_a);
 	ft_free(pile_b);
+	free(line);
 	exit(EXIT_FAILURE);
 }
 
-void	ft_ok(t_pile *pile_a, t_pile *pile_b)
+void	ft_ok(t_pile *pile_a, t_pile *pile_b, char *line)
 {
 	printf("OK\n");
 	ft_free(pile_a);
 	ft_free(pile_b);
+	free(line);
 	exit(EXIT_SUCCESS);
 }
 
