@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:04:51 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 13:08:05 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/11 12:43:31 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_checkerror(char **av)
 	{
 		ft_checkdigit(av, i);
 		j = i - 1;
-		while (j > 0)
+		while (j > -1)
 		{
 			if (!ft_strcmp(av[i], av[j]))
 				ft_error(av, NULL, NULL);

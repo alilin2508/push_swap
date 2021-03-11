@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:46:10 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 14:02:39 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/11 12:48:49 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_pile	*init_pile(void)
 
 	if (!(pile = malloc(sizeof(*pile))))
 		ft_malloc_error();
-	if (pile == NULL)
-		return (NULL);
 	pile->first = NULL;
 	return (pile);
 }
@@ -30,7 +28,7 @@ void	ft_pile(t_pile *pile, int newnb)
 
 	if (!(new = malloc(sizeof(*new))))
 		ft_malloc_error();
-	if (pile == NULL || new == NULL)
+	if (pile == NULL)
 		return ;
 	new->nb = newnb;
 	new->next = pile->first;
@@ -44,9 +42,9 @@ int		ft_depile(t_pile *pile)
 	t_element	*elem_depile;
 
 	nb_depile = 0;
-	elem_depile = pile->first;
 	if (pile == NULL)
 		return (-1);
+	elem_depile = pile->first;
 	if (pile->first != NULL)
 	{
 		nb_depile = elem_depile->nb;
