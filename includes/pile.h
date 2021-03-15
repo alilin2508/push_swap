@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:45:54 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/11 10:16:29 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/15 13:24:45 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void					ft_p(t_pile *pile, t_pile *depile, char *line, \
 void					ft_s(t_pile *pile, char *line, int flag);
 void					ft_r(t_pile *pile, int len, char *line, int flag);
 void					ft_rr(t_pile *pile, int len, char *line, int flag);
-void					ft_error(char **av, t_pile *pile_a, t_pile *pile_b);
+void					ft_error(char **av, t_pile *pile_a, t_pile *pile_b, \
+	int flag);
 void					ft_malloc_error(void);
 void					ft_ko(t_pile *pile_a, t_pile *pile_b, char *line);
 void					ft_ok(t_pile *pile_a, t_pile *pile_b, char *line);

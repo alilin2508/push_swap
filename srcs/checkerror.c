@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:04:51 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/11 12:43:31 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/15 13:23:00 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_checkdigit(char **av, int i)
 		if (av[i][j] < 48 || av[i][j] > 57)
 		{
 			if (j != 0 || (j == 0 && av[i][j] != 45))
-				ft_error(av, NULL, NULL);
+				ft_error(av, NULL, NULL, 0);
 		}
 		j++;
 	}
@@ -42,12 +42,12 @@ void	ft_checkerror(char **av)
 		while (j > -1)
 		{
 			if (!ft_strcmp(av[i], av[j]))
-				ft_error(av, NULL, NULL);
+				ft_error(av, NULL, NULL, 0);
 			j--;
 		}
 		tmp = ft_atoi(av[i]);
 		if (tmp > 2147483647 || tmp < -2147483648)
-			ft_error(av, NULL, NULL);
+			ft_error(av, NULL, NULL, 0);
 		i++;
 	}
 }
