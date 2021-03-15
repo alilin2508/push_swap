@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:43:18 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/11 10:17:18 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/15 13:10:57 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_error(char **arg, t_pile *pile_a, t_pile *pile_b)
 	write(2, "Error\n", 6);
 	ft_free(pile_a);
 	ft_free(pile_b);
-	ft_splitdel(&arg);
+	if (arg != NULL)
+		ft_splitdel(&arg);
 	exit(EXIT_FAILURE);
 }
 
