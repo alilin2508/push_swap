@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:28 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/15 13:23:24 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/15 13:29:45 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ void	ft_exec2(char *line, t_pile *pile_a, t_pile *pile_b, int flag)
 		ft_rr(pile_b, pile_len(pile_b), NULL, 1);
 	}
 	else
-	{
-		free(line);
 		ft_error(NULL, pile_a, pile_b, 1);
-	}
 }
 
 void	ft_exec(char *line, t_pile *pile_a, t_pile *pile_b, int flag)
