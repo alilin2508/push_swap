@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 10:33:39 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/10 15:03:16 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/15 09:56:04 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_nb_cmd(char **av, int i, int j, int len)
 		len++;
 		i++;
 	}
-	return (len);
+	return (len + 1);
 }
 
 int		new_cmd2(char **cmd, char *av, int **index_cmd, int *j_cmd)
