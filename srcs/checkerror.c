@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:04:51 by alilin            #+#    #+#             */
-/*   Updated: 2021/03/15 13:23:00 by alilin           ###   ########.fr       */
+/*   Updated: 2021/03/16 19:39:44 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_checkerror(char **av)
 	int			j;
 	long long	tmp;
 
-	i = 1;
+	i = 0;
 	while (av[i])
 	{
 		ft_checkdigit(av, i);
